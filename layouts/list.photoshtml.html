@@ -5,17 +5,17 @@
 	{{- $list := where .Pages ".Params.photos" "!=" nil -}}
 	{{- $len := (len $list) -}}
 	{{ range $index, $value := $list }}
-    {{- $include_photo := true -}}
+      {{- .Scratch.Set "include_photo" true -}}
 
-    {{ if and .Params.photos_only_microblog (ne .Title "") }}
-      {{ $include_photo := false }}
-    {{ end }}
+    {{- if and .Site.Params.photos_only_microblog (ne .Title "") -}}
+      {{- .Scratch.Set "include_photo" false -}}
+    {{- end -}}
     
-    {{ if and .Params.photos_only_jpegs (not in .Permalink ".jpg") }}
-      {{ $include_photo := false }}
-    {{ end }}
-    
-		{{ if $include_photo }}
+    {{- if and .Site.Params.photos_only_jpegs (not (in .Permalink ".jpg")) -}}
+      {{- .Scratch.Set "include_photo" false -}}
+    {{- end -}}
+      
+		{{- if .Scratch.Get "include_photo" -}}
 			<a href="{{ .Permalink }}">
 				{{ range first 1 .Params.photos }}
 					<img src="{{ . }}" width="300" height="300" style="border-radius: 5px; max-width: 100%; height: auto;" class="photos-grid-item" />
@@ -27,3 +27,4 @@
 	</div>
 
 {{ end }}
+
