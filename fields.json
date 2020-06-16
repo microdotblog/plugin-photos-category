@@ -1,0 +1,17 @@
+[
+  {
+    "field": "params.photos_use_category",
+    "label": "Use category",
+    "placeholder": "Enter the category name to pull photos from"
+  },
+  {
+    "field": "params.photos_only_microblog",
+    "label": "Only include short microblog posts (without a title)",
+    "type": "boolean"
+  },
+  {
+    "field": "params.photos_only_jpegs",
+    "label": "Only include JPEGs",
+    "type": "boolean"
+  }
+}
