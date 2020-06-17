@@ -2,26 +2,25 @@
 
 	<div class="photos-grid-container" style="display: grid; grid-column-gap: 15px; grid-row-gap: 15px; grid-template-columns: 33% 33% 33%;">
 
-	{{- $list := where .Pages ".Params.photos" "!=" nil -}}
+	{{- $category := .Site.Taxonomies.categories.Get .Site.Params.photos_use_category -}}
+	{{- $list := $category.Pages -}}
 	{{- $len := (len $list) -}}
 	{{ range $index, $value := $list }}
-      {{- .Scratch.Set "include_photo" true -}}
+		{{- .Scratch.Set "include_photo" true -}}
 
-    {{- if and .Site.Params.photos_only_microblog (ne .Title "") -}}
-      {{- .Scratch.Set "include_photo" false -}}
-    {{- end -}}
-    
-    {{- if and .Site.Params.photos_only_jpegs (not (in .Permalink ".jpg")) -}}
-      {{- .Scratch.Set "include_photo" false -}}
-    {{- end -}}
-      
+		{{- if and .Site.Params.photos_only_microblog (ne .Title "") -}}
+			{{- .Scratch.Set "include_photo" false -}}
+		{{- end -}}
+          
 		{{- if .Scratch.Get "include_photo" -}}
-			<a href="{{ .Permalink }}">
-				{{ range first 1 .Params.photos }}
-					<img src="{{ . }}" width="300" height="300" style="border-radius: 5px; max-width: 100%; height: auto;" class="photos-grid-item" />
-				{{ end }}
-			</a>
-		{{ end }}
+			{{- if .Params.photos -}}
+				<a href="{{ .Permalink }}">
+					{{ range first 1 .Params.photos }}
+						<img src="{{ . }}" width="300" height="300" style="border-radius: 5px; max-width: 100%; height: auto;" class="photos-grid-item" />
+					{{ end }}
+				</a>
+			{{- end -}}
+		{{- end -}}
 	{{ end }}
 
 	</div>
