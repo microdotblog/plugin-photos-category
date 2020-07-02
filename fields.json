@@ -1,6 +1,6 @@
 {
 	"version": "1.0",
-	"name": "Photos category",
+	"title": "Photos category",
 	"description": "New options for the Photos page on your blog: excluding longer posts or using a category.",
 	"fields": [
 	  {
