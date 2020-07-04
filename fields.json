@@ -3,15 +3,15 @@
 	"title": "Photos category",
 	"description": "New options for the Photos page on your blog: excluding longer posts or using a category.",
 	"fields": [
-	  {
-		"field": "params.photos_use_category",
-		"label": "Use category",
-		"placeholder": "Enter the category name to include photos from"
-	  },
-	  {
-		"field": "params.photos_only_microblog",
-		"label": "Only include short microblog posts (without a title)",
-		"type": "boolean"
-	  }
+		{
+			"field": "params.photos_use_category",
+			"label": "Use category",
+			"placeholder": "Enter the category name to include photos from"
+		},
+		{
+			"field": "params.photos_only_microblog",
+			"label": "Only include short microblog posts (without a title)",
+			"type": "boolean"
+		}
 	]
 }
