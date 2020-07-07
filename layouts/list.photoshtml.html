@@ -2,7 +2,7 @@
 
 	<div class="photos-grid-container" style="display: grid; grid-column-gap: 15px; grid-row-gap: 15px; grid-template-columns: 33% 33% 33%;">
 
-	{{- $category := .Site.Taxonomies.categories.Get .Site.Params.photos_use_category -}}
+	{{- $category := index .Site.Taxonomies.categories (lower .Site.Params.photos_use_category) -}}
 	{{- $list := $category.Pages -}}
 	{{- $len := (len $list) -}}
 	{{ range $index, $value := $list }}
